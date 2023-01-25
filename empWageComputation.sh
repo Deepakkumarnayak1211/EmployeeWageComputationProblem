@@ -9,14 +9,14 @@ empRatePerHr=20;
 numworkingDays=20;
 day=1;
 
-function 	calculateworkingHour() {
-		case $randomCheck in
-			    $isFullTime)
-			    empHrs=8;;
-			    $isPartTime)
-			     empHrs=4;;
-			     *)
-			     empHrs=0;;
+function calculateworkingHour() {
+	case $randomCheck in
+		    $isFullTime)
+		    empHrs=8;;
+		    $isPartTime)
+		     empHrs=4;;
+		     *)
+		     empHrs=0;;
 esac
 	echo $empHrs;
 }
@@ -33,5 +33,7 @@ randomCheck=$((RANDOM%3));
 		salary=$(($empRatePerHr*$wHour));
 		totalSalary=$(($totalSalary+$salary));
 		((day++))
+echo "Employee Daily Wage; "${salary[@]}
+echo "Employee Total Wage; "${totalSalary[*]}
 done
 echo "Employee has earned $totalSalary $ in a month(Total working Hour : $totalworkingHour)";
