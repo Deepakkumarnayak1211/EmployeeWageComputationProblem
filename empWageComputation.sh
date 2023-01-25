@@ -9,28 +9,29 @@ empRatePerHr=20;
 numworkingDays=20;
 day=1;
 
+function 	calculateworkingHour() {
+		case $randomCheck in
+			    $isFullTime)
+			    empHrs=8;;
+			    $isPartTime)
+			     empHrs=4;;
+			     *)
+			     empHrs=0;;
+esac
+	echo $empHrs;
+}
 while [[ $day -le 20 && $totalworkingHour -lt 100 ]]
 do
-
 randomCheck=$((RANDOM%3));
-case $randomCheck in $isFullTime)
-		     empHrs=8;;
-                     $isPartTime)
-                     empHrs=4;;
-                     *)
-                     empHrs=0;;
-esac
-
-totalworkingHour=$(($totalworkingHour+$empHrs))
-
-if [ $totalworkingHour -gt 100 ]
-then
-totalworkingHour=$(($totalworkingHour-$empHrs))
-break;
-fi
-salary=$(($empRatePerHr*$empHrs))
-totalSalary=$(($totalSalary+$salary))
-((day++))
+		wHour=$(calculateworkingHour $randomCheck);
+		totalworkingHour=$(($totalworkingHour + $wHour));
+		if [ $totalworkingHour -gt 100 ]
+		then
+			totalworkingHour=$(($totalworkingHour - $wHour));
+			break;
+		fi
+		salary=$(($empRatePerHr*$wHour));
+		totalSalary=$(($totalSalary+$salary));
+		((day++))
 done
-
 echo "Employee has earned $totalSalary $ in a month(Total working Hour : $totalworkingHour)";
